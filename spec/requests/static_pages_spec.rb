@@ -7,12 +7,17 @@ describe "Static pages" do
   	page.should have_selector('h1',:text =>'Sample App')
   end
 
-  it "should contain Home Page " do
+  it "should contain base title " do
 	visit '/static_pages/home' 
-  	page.should have_selector('title',:text =>"My Application | Home")
-  	
-    end
+  	page.should have_selector('title',:text =>"My Application")
+  	end
+
+  	it "should not have custom page title" do
+  		visit '/static_pages/home' 
+  		page.should_not have_selector('title',:text =>'| Home')
+
   end
+end
 
 
 describe "Help Page" do
@@ -49,6 +54,6 @@ it "should contain 'Contact Us'" do
 	visit '/static_pages/contact' 
   	page.should have_selector('title',:text =>"My Application | Contact Us")
   	
-  end
+  end 
  end
 end
